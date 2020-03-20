@@ -6,7 +6,7 @@ def main():
     p = predict.NGram(n=2)
 
     bee_movie = predict.Tokenizer()
-    p.parse(bee_movie.tokenize_file("data/bee_movie.txt")))
+    p.parse(bee_movie.tokenize_file("data/bee_movie.txt"))
     # moby_dick = predict.Tokenizer("data/moby_dick.txt")
 
     print(p.ngrams)
