@@ -1,0 +1,13 @@
+# Project Option 2
+
+## Group Members: Thomas Lauer and Winston Durand
+
+For our final project, we are planning on implementing a N-Gram based predictive text model. This is one of the most widely used types of natural language processing systems which is used in every phone keyboard. The final version of our project will be able to read a corpus of text, parse it into different sized N-Grams, and use those to generate a Markov Chain to predict the next word given a sequence of previous words. From this Markov Chain we can investigate how different N-Gram sizes affect the predictions, and how the corpus itself affects the bias and accuracy of the text prediction.
+
+There are several tests we could use to judge the accuracy of our predictive model, such as:
+
+- How can we combine different N count N-Grams to get an efficient combination of storage requirements and reasonable predictive capabilities? (e.g. 100,000 most common trigrams, fall through to a full corpus bigram model, fall through to single word completion options)
+- How does the training corpus affect the predictions? If we use a second corpus for validation, we could use the model to predict the final word in each N-Gram of the other text. This would allow us to judge how well the training corpus generalizes to novel text.
+- How do completely randomly generated outputs compare to the original corpus? For instance, does a random NYTimes article appear similar to an actual article?
+
+We would most likely use Python for this project, since it’s used in a large number of natural language processing systems. Both of us are very proficient with Python and programming in general. For the final submission, it would be nice to have a user interface which would show what the model is predicting while typing in real time, in addition to command line batch commands. Any text corpus should be suitable, but we will likely start with a subset of the enronsent or nytimes corpora shown in class before using the entire corpus. It will be trivial to add other raw text corpora in the future, either to improve the accuracy of the model or understand how it learns biases from a specific corpus. It's also interesting to look at how we can combine multiple layers of "fall through", such as starting with a common trigram -> bigram -> word completion as we get to less common cases. Further, it would be interesting to have the probabilities update dynamically based on how it has actually been utilized in the user's writing so far, e.g. give phrases the user has already typed an X% increase in probability as a tunable parameter.
