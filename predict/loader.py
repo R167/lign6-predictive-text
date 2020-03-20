@@ -15,7 +15,7 @@ class Tokenizer:
     # contents = contents.replace(u"\u2018", "").replace(u"\u2019", "").replace(u"\u201c","").replace(u"\u201d", "")
 
     # jk using regular expressions
-    return re.sub(r'[^A-Za-z]', ' ', contents)
+    return re.sub(r'[^A-Za-z]', ' ', contents).lower()
 
   def tokenize_sentences(self, contents):
     sentences = []
