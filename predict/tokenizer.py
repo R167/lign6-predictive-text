@@ -11,7 +11,14 @@ REPLACEMENTS = {
   u"\u2014": ' - ', # Em dashes
 }
 
+REJECTS = ['-']
+
 class Tokenizer:
+
+  EOS = "<EOS>"
+
+  EOS_EQUIVALENT = r'^[\.!?]$'
+  SINGLE_CHAR = r''
 
   def tokenize_file(self, filename):
     tokens = []
@@ -44,3 +51,30 @@ class Tokenizer:
       contents = contents.replace(key, REPLACEMENTS[key])
 
     return contents
+
+  # Clean up any invalid characters
+  def pre_cleanup(self, contents):
+    cont = self.cleanup_smart_quotes(contents)
+    return cont
+
+  # Reject any tokens we don't care about or canonicalize them
+  def post_cleanup(self, tokens):
+    # Steps:
+
+    # - Prepend "<EOS>"
+    output_tokens = [self.EOS]
+
+    # - Canonicalize all [\.!?] etc. to a "<EOS>"
+    for token in tokens:
+      output_tokens.append(re.sub(self.EOS_EQUIVALENT, self.EOS, token))
+
+    # - Delete any other single character \W
+    r'^[\W_-]$'
+    output_tokens = []
+
+    # - make everything lowercase
+    output_tokens = [token.lower() for token in output_tokens]
+
+    # - Delete leading/trailing [_]
+
+    return output_tokens

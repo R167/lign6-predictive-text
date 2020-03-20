@@ -32,6 +32,7 @@ class NGram:
             print("Need to parse a file first!")
             return []
 
+        input_tokens = self.tokenizer.tokenize_string(sentence)
 
         if len(input_tokens) < self.ngram_size:
             print(f"N-Gram size is currently {self.ngram_size}, only {len(input_tokens)} gram found.")
