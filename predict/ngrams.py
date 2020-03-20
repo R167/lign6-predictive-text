@@ -24,7 +24,6 @@ class Parser:
 
         sentence = re.sub(r'[^A-Za-z]', ' ', sentence)
         input_ngram = " ".join(nltk.word_tokenize(sentence)[-self.ngram_size:]).lower()
-        print(input_ngram)
         if input_ngram in self.ngrams.keys():
             return self.ngrams[input_ngram]
         return []

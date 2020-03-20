@@ -3,10 +3,13 @@ import predict
 
 
 def main():
-    t = predict.Tokenizer("data/bee_movie.txt")
     p = predict.Parser(n=2)
 
-    p.parse(t.sentences)
+    bee_movie = predict.Tokenizer("data/bee_movie.txt")
+    moby_dick = predict.Tokenizer("data/moby_dick.txt")
+
+    p.parse(bee_movie.sentences)
+    p.parse(moby_dick.sentences)
 
     while True:
         user_input = input(": ")
@@ -14,7 +17,11 @@ def main():
         if user_input == "!quit":
             return
 
-        print(p.predict(user_input))
+        predicted = p.predict(user_input)
+        if predicted == []:
+            print("No N-Grams match")
+        else:
+            print("Predicted words:", " ".join(p.predict(user_input)))
 
 if __name__ == "__main__":
     main()
