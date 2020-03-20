@@ -23,7 +23,14 @@ class Parser:
             return
 
         sentence = re.sub(r'[^A-Za-z]', ' ', sentence)
-        input_ngram = " ".join(nltk.word_tokenize(sentence)[-self.ngram_size:]).lower()
+        input_tokens = nltk.word_tokenize(sentence)
+
+        if len(input_tokens) < self.ngram_size:
+            print(f"N-Gram size is currently {self.ngram_size}, only {len(input_tokens)} gram found.")
+            return []
+
+        input_ngram = " ".join(input_tokens[-self.ngram_size:]).lower()
+
         if input_ngram in self.ngrams.keys():
             return self.ngrams[input_ngram]
         return []
