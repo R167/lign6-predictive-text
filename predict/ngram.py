@@ -11,7 +11,7 @@ from . import Tokenizer
 class NGram:
     def __init__(self, n=3, limit=-1):
         self.max_limit = limit
-        self.ngram_size = n
+        self.ngram_size = n - 1
         self.ngrams = {}
         self.tokenizer = Tokenizer()
 
@@ -34,9 +34,11 @@ class NGram:
 
         input_tokens = self.tokenizer.tokenize_string(sentence)
 
+        """
         if len(input_tokens) < self.ngram_size:
             print(f"N-Gram size is currently {self.ngram_size}, only {len(input_tokens)} gram found.")
             return []
+        """
 
         input_ngram = " ".join(input_tokens[-self.ngram_size:]).lower()
 

@@ -18,7 +18,7 @@ class Tokenizer:
   EOS = "<EOS>"
 
   EOS_EQUIVALENT = r'^[\.!?]$'
-  SINGLE_CHAR = r''
+  SINGLE_CHAR = r'^[\W_-]$'
 
   def tokenize_file(self, filename):
     tokens = []
@@ -31,11 +31,13 @@ class Tokenizer:
   def tokenize_string(self, contents):
     tokens = []
 
-    contents = self.clean(contents)
+    # contents = self.clean(contents)
 
     # for sent in nltk.sent_tokenize(contents):
     #   sentences.append(nltk.word_tokenize(sent))
+    contents = self.pre_cleanup(contents)
     tokens = nltk.word_tokenize(contents)
+    tokens = self.post_cleanup(tokens)
 
     return tokens
 
@@ -61,6 +63,9 @@ class Tokenizer:
   def post_cleanup(self, tokens):
     # Steps:
 
+    # - make everything lowercase
+    tokens = [token.lower() for token in tokens]
+
     # - Prepend "<EOS>"
     output_tokens = [self.EOS]
 
@@ -69,11 +74,8 @@ class Tokenizer:
       output_tokens.append(re.sub(self.EOS_EQUIVALENT, self.EOS, token))
 
     # - Delete any other single character \W
-    r'^[\W_-]$'
-    output_tokens = []
+    output_tokens = [token for token in output_tokens if not re.match(self.SINGLE_CHAR, token)]
 
-    # - make everything lowercase
-    output_tokens = [token.lower() for token in output_tokens]
 
     # - Delete leading/trailing [_]
 

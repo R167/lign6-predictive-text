@@ -3,11 +3,14 @@ from collections import Counter
 
 
 def main():
-    p = predict.NGram(n=2)
+    p = predict.NGram(n=4)
 
     tokenizer = predict.Tokenizer()
-    p.parse(tokenizer.tokenize_file("data/bee_movie.txt"))
-    p.parse(tokenizer.tokenize_file("data/moby_dick.txt"))
+    tokens = []
+    tokens = tokens + tokenizer.tokenize_file("data/bee_movie.txt")
+    tokens = tokens + tokenizer.tokenize_file("data/moby_dick.txt")
+
+    p.parse(tokens)
 
     while True:
         user_input = input("~> ")
