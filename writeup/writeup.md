@@ -6,6 +6,8 @@ geometry: margin=1in
 
 Written by Winston Durand and Thomas Lauer
 
+This entire source of this project is available at [github.com/R167/lign6-predictive-text](https://github.com/R167/lign6-predictive-text)
+
 ## Our task
 
 Our project is an n-gram predictive text engine, similar to what cell phones use
