@@ -89,8 +89,6 @@ class Predictor:
             prefix = search[-1]
 
             key = NGram.construct_key(search[-i:-1])
-            print(key)
-            print(prefix)
             options = ngram.predict(key, raw=True)
 
             matches = filter(lambda w: w[0].startswith(prefix), options.items())

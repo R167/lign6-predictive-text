@@ -17,6 +17,7 @@ def initPredictor():
     tokens = []
     tokens = tokens + tokenizer.tokenize_file("data/bee_movie.txt")
     tokens = tokens + tokenizer.tokenize_file("data/moby_dick.txt")
+    tokens = tokens + tokenizer.tokenize_file("data/the_iliad.txt")
 
     predictor = predict.Predictor(tokens, tokenizer, max_gram)
 
@@ -35,23 +36,10 @@ class PredictiveTextHandler(BaseHTTPRequestHandler):
         response.write(json.dumps(predicted.most_common(10)).encode('utf-8'))
         self.wfile.write(response.getvalue())
 
-def main():
-
-
-    while True:
-        user_input = input("~> ")
-
-        if user_input == ":q":
-            return
-
-        predicted = predictor.get_prediction(user_input)
-        print(predicted.most_common(10))
-
 
 if __name__ == "__main__":
 
     initPredictor()
-    print(predictor.get_prediction("You like "))
 
     PORT = 8080
     Handler = PredictiveTextHandler
