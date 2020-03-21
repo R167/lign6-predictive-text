@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pandoc -s WRITEUP.md --filter=pandoc-codeblock-include -o writeup.pdf
+pandoc -s writeup/writeup.md --filter=pandoc-codeblock-include -o writeup.pdf
