@@ -18,29 +18,29 @@ Written by Winston Durand and Thomas Lauer
 
 ## The code used to run the tool (Comment your code, and provide the source)
 
-`predict/__init__.py`: just boiler plate
+### `predict/__init__.py`: just boiler plate
 
 ```{.python include=predict/__init__.py}
 ```
 
-`predict/ngram.py`: takes care of building the ngrams and parser
+### `predict/ngram.py`: takes care of building the ngrams and parser
 
 ```{.python include=predict/ngram.py}
 ```
 
-`predict/tokenizer.py`: tokenizer for processing input
+### `predict/tokenizer.py`: tokenizer for processing input
 
-```{include=predict/tokenizer.py}
+```{.python include=predict/tokenizer.py}
 ```
 
-`ui/index.html`: barebones ui for feedback as you type
+### `ui/index.html`: barebones ui for feedback as you type
 
-```{include=ui/index.html}
+```{.html include=index.html}
 ```
 
-`server.py`: super barebones server to handle backend
+### `server.py`: super barebones server to handle backend
 
-```{include=server.py}
+```{.python include=server.py}
 ```
 
 ## What the tool consistently "got right"

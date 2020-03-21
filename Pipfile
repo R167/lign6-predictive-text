@@ -7,6 +7,7 @@ verify_ssl = true
 
 [packages]
 nltk = "*"
+pandoc-codeblock-include = "*"
 
 [requires]
 python_version = "3.7"
