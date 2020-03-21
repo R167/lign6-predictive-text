@@ -157,9 +157,9 @@ definitely possible.
 
 ## Sample screenshots
 
-![general](screenshots/gotothe.png)
+![A simple example](writeup/gotothe.png)
 
-![call me](screenshots/callme.png)
+![Call me what?](writeup/callme.png)
 
-![you like jazz?](screenshots/jazz.png)
+![You like jazz?](writeup/jazz.png)
 
