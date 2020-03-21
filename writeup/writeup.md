@@ -61,6 +61,18 @@ last token is stored in a `Counter` object. This way, if we want to find the
 next word in the sequence "one two three ____," we only would need to access
 `ngram['one two three']`.
 
+Our predictions try matching the longest possible n-grams, up to 5-grams. If there
+are no matches, it falls back to 4-grams, all the way to 1-grams. This lets the
+autocomplete find the best possible match while being able to adapt if those fail.
+
+We also added (n-1)-grams, which are used if the user's string does not end in a space.
+In a phone keyboard, this would mean they could still be typing the rest of a word, and
+we would want to provide autocomplete suggestions for the next few letters. For this,
+we take last few complete grams that have been entered and find the list of n-grams
+that match those. Then we find all the next words that _begin_ with start of the word
+that has been entered. This gives auto-complete suggestions as you would expect from
+a phone keyboard.
+
 ## The code used to run the tool (Comment your code, and provide the source)
 
 ### `predict/__init__.py`: just boiler plate
@@ -90,10 +102,28 @@ next word in the sequence "one two three ____," we only would need to access
 
 ## What the tool consistently "got right"
 
+It works surprisingly well! It provides the next word exactly as you would expect from
+and n-gram based model. We can definitely see how the source corporoa influence the output,
+since a lot of the suggestions mention characters from the Iliad or boats hunting white whales.
+
+Since we preprocess everything, it runs as fast as you can type. This is necessary for an
+autocomplete system since it needs to save time over typing the rest of the word.
+
 ## Where the tool consistently failed
 
-The tool we built seemed to have issues in particular with punctuation.
+The tool we built seemed to have issues in particular with punctuation. This is mostly because we decided
+to focus on the words instead of punctuation, since that's what other autocomplete systems seem to do.
+To change this we would have to restructure our tokenization steps, which is where we're stripping
+the punctuation.
 
 ## Specific ideas on how the tool could be improved
 
+We can always give this a larger corpus. We're using language that doesn't likely reflect modern
+conversation. This is one of the downsides of n-grams, they are very domain specific.
+
 ## How these advantages and disadvantages would affect implementation in a larger project.
+
+If we were deploying this to an actual system, we could use the inputs to further refine the model.
+This would be very easy, all we'd need to do is tokenize the string and call `predictor.parse` to
+add the new n-grams. As people keep using the system, it would continuiously refine itself to more
+accurately model the users's language. Most phone keyboards already do this, so it's definitely possible.
