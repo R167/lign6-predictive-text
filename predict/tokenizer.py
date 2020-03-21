@@ -4,10 +4,10 @@ import re
 nltk.download('punkt')
 
 REPLACEMENTS = {
-  u"\u2018": "'", # Start smart quotes
-  u"\u2019": "'",
-  u"\u201c": '"',
-  u"\u201d": '"',
+  u"\u2018": "", # Start smart quotes
+  u"\u2019": "",
+  u"\u201c": '',
+  u"\u201d": '',
   u"\u2014": ' - ', # Em dashes
 }
 
@@ -15,7 +15,7 @@ REJECTS = ['-']
 
 class Tokenizer:
 
-  EOS = "<EOS>"
+  EOS = "<eos>"
 
   EOS_EQUIVALENT = r'^[\.!?]$'
   SINGLE_CHAR = r'^[\W_-]$'

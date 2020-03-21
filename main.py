@@ -1,16 +1,18 @@
 import predict
 from collections import Counter
+import json
 
 
 def main():
-    p = predict.NGram(n=4)
+
+    max_gram = 3
 
     tokenizer = predict.Tokenizer()
     tokens = []
     tokens = tokens + tokenizer.tokenize_file("data/bee_movie.txt")
     tokens = tokens + tokenizer.tokenize_file("data/moby_dick.txt")
 
-    p.parse(tokens)
+    predictor = predict.Predictor(tokens, tokenizer, max_gram)
 
     while True:
         user_input = input("~> ")
@@ -18,10 +20,9 @@ def main():
         if user_input == ":q":
             return
 
-        predicted = p.predict(user_input)
-        if not predicted == []:
-            #print(" ".join(set(p.predict(user_input))))
-            print(p.predict(user_input).most_common(3))
+        predicted = predictor.get_prediction(user_input)
+        print(json.dumps(predicted.most_common(10)))
+        # print(predicted)
 
 
 if __name__ == "__main__":

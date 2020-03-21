@@ -1,2 +1,2 @@
-from .tokenizer import Tokenizer
-from .ngram     import NGram
+from .tokenizer import *
+from .ngram     import *

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script type="application/javascript">
+    const URL = 'http://localhost:8080';
+
+    var update_num = 0;
+    function makeRequest(text, update) {
+      $.post(URL, JSON.stringify({request: text}), function( data ) {
+        console.log(`Got back request ${update} for search "${text}" and contents "${data}".`)
+
+        if (update_num === update) {
+          $('#results').prepend($('<ul/>').text(data));
+        }
+      });
+    }
+
+    $(document).ready(() => {
+      $('#suggest').change(() => {
+        update_num += 1;
+        makeRequest($(this).val(), update_num);
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Simple autocomplete</h1>
+  <h2>Input</h2>
+  <input id="suggest" />
+
+  <h2>Outputs</h2>
+  <ol id="results"></ol>
+</body>
+</html>
