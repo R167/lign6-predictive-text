@@ -25,6 +25,7 @@ class PredictiveTextHandler(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)
         self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin','*')
         self.end_headers()
 
         input_str = json.loads(body.decode('utf-8'))["request"]
@@ -57,4 +58,3 @@ if __name__ == "__main__":
     with socketserver.TCPServer(("", PORT), Handler) as httpd:
         print("serving at port", PORT)
         httpd.serve_forever()
-

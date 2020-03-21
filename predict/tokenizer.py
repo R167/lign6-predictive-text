@@ -9,6 +9,7 @@ REPLACEMENTS = {
   u"\u201c": '',
   u"\u201d": '',
   u"\u2014": ' - ', # Em dashes
+  '"': '',
 }
 
 REJECTS = ['-']

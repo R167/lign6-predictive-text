@@ -11,15 +11,20 @@
         console.log(`Got back request ${update} for search "${text}" and contents "${data}".`)
 
         if (update_num === update) {
-          $('#results').prepend($('<ul/>').text(data));
+          var results = $('#results');
+
+          results.empty();
+          JSON.parse(data).forEach(element => {
+            results.append($('<ul/>').text(`${element[1]}: ${element[0]}`));
+          });
         }
       });
     }
 
     $(document).ready(() => {
-      $('#suggest').change(() => {
+      $('#suggest').on('input', () => {
         update_num += 1;
-        makeRequest($(this).val(), update_num);
+        makeRequest($('#suggest').val(), update_num);
       });
     });
   </script>
@@ -27,7 +32,7 @@
 <body>
   <h1>Simple autocomplete</h1>
   <h2>Input</h2>
-  <input id="suggest" />
+  <textarea id="suggest"></textarea>
 
   <h2>Outputs</h2>
   <ol id="results"></ol>
