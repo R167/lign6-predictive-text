@@ -11,7 +11,7 @@ predictor = None
 
 def initPredictor():
     global predictor
-    max_gram = 3
+    max_gram = 5
 
     tokenizer = predict.Tokenizer()
     tokens = []
