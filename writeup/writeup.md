@@ -154,3 +154,12 @@ tokenize the string and call `predictor.parse` to add the new n-grams. As people
 keep using the system, it would continuiously refine itself to more accurately
 model the users's language. Most phone keyboards already do this, so it's
 definitely possible.
+
+## Sample screenshots
+
+![general](screenshots/gotothe.png)
+
+![call me](screenshots/callme.png)
+
+![you like jazz?](screenshots/jazz.png)
+
