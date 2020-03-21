@@ -161,5 +161,7 @@ definitely possible.
 
 ![Call me what?](writeup/callme.png)
 
+![Partial word completion](writeup/partial.png)
+
 ![You like jazz?](writeup/jazz.png)
 
